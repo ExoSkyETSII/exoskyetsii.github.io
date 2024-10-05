@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { exoplanets } from './exoplanets.js'
 import Stats from 'three/addons/libs/stats.module.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-import { stars } from '../data/test.js'
+import { stars } from '../data/stars.js'
 
 const radius = 50
 
@@ -109,3 +109,8 @@ const animate = () => {
 }
 
 animate()
+
+export {
+  scene,
+  camera
+}
