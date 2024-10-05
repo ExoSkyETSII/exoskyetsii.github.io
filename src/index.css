@@ -36,6 +36,7 @@ ul {
   background-color: #444;
   border-radius: 5px;
   cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .listed-exoplanet > span {
@@ -44,6 +45,6 @@ ul {
   font-size: 1.2em;
 }
 
-.listed-exoplanet .selected {
-  background-color: #555;
+.selected {
+  border-color: white;
 }
