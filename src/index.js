@@ -1,95 +1,64 @@
 import * as THREE from 'three'
-import { exoplanets } from '../data/exoplanets.js'
 import Stats from 'three/addons/libs/stats.module.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-import { FontLoader } from 'three/addons/loaders/FontLoader.js'
-import { miniCube, miniAxes, miniRenderer, miniScene, miniCamera } from './rotation.js'
-import { selectExoplanet } from './exoplanet.js'
-import { clickHandler } from './raycast.js'
+import { animateCube } from './rotation.js'
 
 const radius = 50
-
-let fontLoader = new FontLoader();
-let loadedFont;
-fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
-  loadedFont = font;
-})
 
 const stats = new Stats()
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 const renderer = new THREE.WebGLRenderer()
+
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 document.body.appendChild(stats.dom)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.enableDamping = true
+
 camera.position.z = 0.001
 
-// Create a circle geometry for the equator
-const segments = 64
-const equatorGeometry = new THREE.BufferGeometry();
-const equatorVertices = [];
+function createEquator () {
+  const segments = 8
+  const equatorGeometry = new THREE.BufferGeometry()
+  const equatorVertices = []
 
-for (let i = 0; i <= segments; i++) {
-  const theta = (i / segments) * Math.PI * 2;
-  const x = radius * Math.cos(theta);
-  const z = radius * Math.sin(theta);
-  equatorVertices.push(x, 0, z);
-}
+  for (let i = 0; i <= segments; i++) {
+    const theta = (i / segments) * Math.PI * 2
+    const x = radius * Math.cos(theta)
+    const z = radius * Math.sin(theta)
+    equatorVertices.push(x, 0, z)
+  }
 
-equatorGeometry.setAttribute(
-  'position',
-  new THREE.Float32BufferAttribute(equatorVertices, 3)
-);
+  equatorGeometry.setAttribute(
+    'position',
+    new THREE.Float32BufferAttribute(equatorVertices, 3)
+  )
 
-const equatorMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 }); // Red color
-const equatorLine = new THREE.Line(equatorGeometry, equatorMaterial);
-scene.add(equatorLine);
-
-window.addEventListener('resize', () => {
-  const width = window.innerWidth
-  const height = window.innerHeight
-  renderer.setSize(width, height)
-  camera.aspect = width / height
-  camera.updateProjectionMatrix()
-})
-
-window.addEventListener('click', (ev) => {
-  clickHandler(ev, camera, scene, loadedFont)
-})
-
-// Add exoplanets
-const exoplanetsList = document.querySelector('.exoplanets')
-
-for (const exoplanet of exoplanets) {
-  const exoplanetElement = document.createElement('div')
-  exoplanetElement.classList.add('listed-exoplanet')
-
-  exoplanetElement.addEventListener('click', () => {
-    selectExoplanet(exoplanet, exoplanetElement, scene)
+  const equatorMaterial = new THREE.LineDashedMaterial({
+    color: 0xffffff,    // Line color
+    dashSize: 0.5,      // Length of dashes
+    gapSize: 0.5,       // Length of gaps
+    linewidth: 1        // Line width
   })
-
-  const exoplanetName = document.createElement('span')
-  exoplanetName.textContent = exoplanet['pl_name']
-
-  exoplanetElement.appendChild(exoplanetName)
-  exoplanetsList.appendChild(exoplanetElement)
+  const equatorLine = new THREE.Line(equatorGeometry, equatorMaterial)
+  equatorLine.computeLineDistances()
+  scene.add(equatorLine)
 }
 
-const animate = () => {
-  requestAnimationFrame(animate)
+function animateScene () {
+  requestAnimationFrame(animateScene)
   stats.update()
-  miniCube.quaternion.copy(camera.quaternion)
-  miniAxes.quaternion.copy(camera.quaternion)
   renderer.render(scene, camera)
-  miniRenderer.render(miniScene, miniCamera)
 }
 
-animate()
+animateScene()
+animateCube()
+createEquator()
 
 export {
   scene,
+  renderer,
   camera
 }

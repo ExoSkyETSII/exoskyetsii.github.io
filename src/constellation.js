@@ -1,9 +1,10 @@
 import * as THREE from 'three'
+import { scene } from './index.js'
 import { addStar } from './stars.js'
 
 const lines = []
 
-function drawLine (scene, obj) {
+function drawLine (obj) {
   if (!lines.some(line => line.gaia_data.nombre == obj.gaia_data.nombre)) {
     addStar(obj.gaia_data)
   }
@@ -19,11 +20,10 @@ function drawLine (scene, obj) {
     obj.position
   ])
 
-  const material = new THREE.LineBasicMaterial({ color: 0x0fffff }) // Blue color
+  const material = new THREE.LineBasicMaterial({ color: 0x0fffff })
   const line = new THREE.Line(geometry, material)
 
   scene.add(line)
-
   lines.push(obj)
 }
 

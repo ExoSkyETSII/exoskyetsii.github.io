@@ -8,7 +8,7 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 0.5);
   width: 300px;
   border-bottom-left-radius: 5px;
 }
@@ -59,7 +59,7 @@ ul {
   border-color: white;
 }
 
-#cube-container {
+.cube-container {
   position: absolute;
   bottom: 20px;
   right: 20px;

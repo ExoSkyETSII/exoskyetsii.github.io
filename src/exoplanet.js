@@ -1,9 +1,9 @@
 import * as THREE from 'three'
-// import { stars } from '../data/test3.js'
-import { merged } from '../data/merged.js'
+import { scene } from './index.js'
+import { stars } from './data/stars.js'
 
-const selectExoplanet = (exoplanet, el, scene) => {
-  if (merged[exoplanet['pl_name']] == null) {
+function selectExoplanet (exoplanet, el) {
+  if (stars[exoplanet['pl_name']] == null) {
     return
   }
 
@@ -17,8 +17,11 @@ const selectExoplanet = (exoplanet, el, scene) => {
   }
 
   el.classList.add('selected')
+  loadExoplanets(exoplanet)
+}
 
-  for (const star of merged[exoplanet['pl_name']]) {
+function loadExoplanets (exoplanet) {
+  for (const star of stars[exoplanet['pl_name']]) {
     const geometry = new THREE.CircleGeometry()
     // const material = new THREE.MeshBasicMaterial({ color: 0xeeeeee, wireframe: false })
     const material = new THREE.ShaderMaterial({
@@ -41,8 +44,8 @@ const selectExoplanet = (exoplanet, el, scene) => {
         uniform vec3 uColor;
 
         void main() {
-          // Calculate distance from the center (normalized position)
-          float intensity = length(vPosition) / 1.0; // Adjust the divisor to control how quickly it fades
+          // Calculate distance center
+          float intensity = length(vPosition) / 1.5;
           // intensity = 1.0 - intensity;  // Invert it to start bright in the center
 
           // Apply gradient based on intensity
@@ -63,9 +66,10 @@ const selectExoplanet = (exoplanet, el, scene) => {
     scene.add(circle)
   }
 
-  console.log(merged['11 UMi b'].length)
+  console.log(`Loaded ${stars['11 UMi b'].length} stars for ${exoplanet['pl_name']}`)
 }
 
 export {
-  selectExoplanet
+  selectExoplanet,
+  loadExoplanets
 }
