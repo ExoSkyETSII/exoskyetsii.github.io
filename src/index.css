@@ -48,3 +48,13 @@ ul {
 .selected {
   border-color: white;
 }
+
+#cube-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+  height: 150px;
+  pointer-events: none;
+  /* To make sure clicks pass through */
+}

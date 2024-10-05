@@ -2,7 +2,8 @@ import * as THREE from 'three'
 import { exoplanets } from './exoplanets.js'
 import Stats from 'three/addons/libs/stats.module.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-import { stars } from '../data/stars.js'
+import { miniCube, miniAxes, miniRenderer, miniScene, miniCamera } from './rotation.js'
+import { selectExoplanet } from './exoplanet.js'
 
 const radius = 50
 
@@ -55,7 +56,7 @@ for (const exoplanet of exoplanets) {
   exoplanetElement.classList.add('listed-exoplanet')
 
   exoplanetElement.addEventListener('click', () => {
-    selectExoplanet(exoplanet, exoplanetElement)
+    selectExoplanet(exoplanet, exoplanetElement, scene)
   })
 
   const exoplanetName = document.createElement('span')
@@ -65,47 +66,13 @@ for (const exoplanet of exoplanets) {
   exoplanetsList.appendChild(exoplanetElement)
 }
 
-const selectExoplanet = (exoplanet, el) => {
-  if (stars[exoplanet['pl_name']] == null) {
-    return
-  }
-
-  const selectedExoplanets = document.querySelectorAll('.selected')
-  for (const selectedExoplanet of selectedExoplanets) {
-    selectedExoplanet.classList.remove('selected')
-  }
-
-  el.classList.add('selected')
-
-  for (const star of stars[exoplanet['pl_name']]) {
-    const geometry = new THREE.SphereGeometry()
-    const material = new THREE.MeshBasicMaterial({ color: 0xeeeeee, wireframe: true })
-    const circle = new THREE.Mesh(geometry, material)
-
-    // Distance to star
-    const distance = Math.sqrt(star[0] ** 2 + star[1] ** 2 + star[2] ** 2)
-
-    // If distance is more than 500, bring it closer
-    const maxDistance = 50
-
-    // Scale factor
-    const scaleFactor = maxDistance / distance
-
-    // console.log(star[0] * 0.1, star[1] * 0.1, star[2] * 0.1)
-    circle.position.x = star[0]
-    circle.position.y = star[1]
-    circle.position.z = star[2]
-
-    scene.add(circle)
-  }
-
-  console.log(stars['11 Com b'].length)
-}
-
 const animate = () => {
   requestAnimationFrame(animate)
   stats.update()
+  miniCube.quaternion.copy(camera.quaternion)
+  miniAxes.quaternion.copy(camera.quaternion)
   renderer.render(scene, camera)
+  miniRenderer.render(miniScene, miniCamera)
 }
 
 animate()
