@@ -4,6 +4,7 @@ import Stats from 'three/addons/libs/stats.module.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { miniCube, miniAxes, miniRenderer, miniScene, miniCamera } from './rotation.js'
 import { selectExoplanet } from './exoplanet.js'
+import { clickHandler } from './raycast.js'
 
 const radius = 50
 
@@ -46,6 +47,10 @@ window.addEventListener('resize', () => {
   renderer.setSize(width, height)
   camera.aspect = width / height
   camera.updateProjectionMatrix()
+})
+
+window.addEventListener('click', (ev) => {
+  clickHandler(ev, camera, scene)
 })
 
 // Add exoplanets
