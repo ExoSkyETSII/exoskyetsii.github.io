@@ -16,7 +16,7 @@ function addStar(star){
     // Create tooltip element
     const tooltip = document.createElement('div');
     tooltip.classList.add('tooltip');
-    tooltip.textContent = `Coordinates & magnitudes: ${star['coordenadas']},\ln Click for more info`;
+    tooltip.innerHTML = `Coordinates & magnitudes: ${star['coordenadas']},<br/>Click for more info`;
     document.body.appendChild(tooltip);
     
     // Show tooltip on hover
