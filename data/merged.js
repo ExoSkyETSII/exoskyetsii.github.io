@@ -1,4 +1,5 @@
-[
+export const merged = {
+  '11 UMi b': [
     {
         "nombre": "Gaia DR3 455914562346088704",
         "coordenadas": [
@@ -71154,3 +71155,4 @@
         ]
     }
 ]
+}
