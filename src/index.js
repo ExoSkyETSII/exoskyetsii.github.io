@@ -10,21 +10,21 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 document.body.appendChild(stats.dom)
 
-// Add a cube to the scene
-// for (let i = 0; i < 100; i++) {
-//   const geometry = new THREE.SphereGeometry()
-//   const material = new THREE.MeshBasicMaterial({ color: 0xeeeeee })
-//   const circle = new THREE.Mesh(geometry, material)
-//   scene.add(circle)
+// Add test spheres
+for (let i = 0; i < 100; i++) {
+  const geometry = new THREE.SphereGeometry()
+  const material = new THREE.MeshBasicMaterial({ color: 0xeeeeee })
+  const circle = new THREE.Mesh(geometry, material)
+  scene.add(circle)
 
-//   // Randomize the circle position but a fixed distance away from the center
-//   const verticalAngle = Math.random() * Math.PI
-//   const horizontalAngle = Math.random() * Math.PI * 2
-//   const radius = 500
-//   circle.position.x = radius * Math.sin(verticalAngle) * Math.cos(horizontalAngle)
-//   circle.position.y = radius * Math.cos(verticalAngle)
-//   circle.position.z = radius * Math.sin(verticalAngle) * Math.sin(horizontalAngle)
-// }
+  // Randomize the circle position but a fixed distance away from the center
+  const verticalAngle = Math.random() * Math.PI
+  const horizontalAngle = Math.random() * Math.PI * 2
+  const radius = 500
+  circle.position.x = radius * Math.sin(verticalAngle) * Math.cos(horizontalAngle)
+  circle.position.y = radius * Math.cos(verticalAngle)
+  circle.position.z = radius * Math.sin(verticalAngle) * Math.sin(horizontalAngle)
+}
 
 // Equator
 const equatorGeometry = new THREE.CircleGeometry(500, 64)
@@ -75,7 +75,7 @@ const exoplanetsList = document.querySelector('.exoplanets')
 
 for (const exoplanet of exoplanets) {
   const exoplanetElement = document.createElement('div')
-  exoplanetElement.classList.add('.listed-exoplanet')
+  exoplanetElement.classList.add('listed-exoplanet')
 
   const exoplanetName = document.createElement('span')
   exoplanetName.textContent = exoplanet['pl_name']
