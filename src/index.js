@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { exoplanets } from './exoplanets.js'
+import { exoplanets } from '../data/exoplanets.js'
 import Stats from 'three/addons/libs/stats.module.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { miniCube, miniAxes, miniRenderer, miniScene, miniCamera } from './rotation.js'

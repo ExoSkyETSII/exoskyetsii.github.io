@@ -1,8 +1,9 @@
 import * as THREE from 'three'
-import { stars } from '../data/test3.js'
+// import { stars } from '../data/test3.js'
+import { merged } from '../data/merged.js'
 
 const selectExoplanet = (exoplanet, el, scene) => {
-  if (stars[exoplanet['pl_name']] == null) {
+  if (merged[exoplanet['pl_name']] == null) {
     return
   }
 
@@ -13,7 +14,7 @@ const selectExoplanet = (exoplanet, el, scene) => {
 
   el.classList.add('selected')
 
-  for (const star of stars[exoplanet['pl_name']]) {
+  for (const star of merged[exoplanet['pl_name']]) {
     const geometry = new THREE.CircleGeometry()
     // const material = new THREE.MeshBasicMaterial({ color: 0xeeeeee, wireframe: false })
     const material = new THREE.ShaderMaterial({
@@ -55,15 +56,15 @@ const selectExoplanet = (exoplanet, el, scene) => {
     const scaleFactor = maxDistance / distance
 
     // console.log(star[0] * 0.1, star[1] * 0.1, star[2] * 0.1)
-    circle.position.x = star[0]
-    circle.position.y = star[1]
-    circle.position.z = star[2]
+    circle.position.x = star.coordenadas[0]
+    circle.position.y = star.coordenadas[1]
+    circle.position.z = star.coordenadas[2]
 
     circle.lookAt(0, 0, 0)
     scene.add(circle)
   }
 
-  console.log(stars['11 UMi b'].length)
+  console.log(merged['11 UMi b'].length)
 }
 
 export {
