@@ -7,6 +7,10 @@ const selectExoplanet = (exoplanet, el, scene) => {
     return
   }
 
+  if (el.classList.contains('selected')) {
+    return
+  }
+
   const selectedExoplanets = document.querySelectorAll('.selected')
   for (const selectedExoplanet of selectedExoplanets) {
     selectedExoplanet.classList.remove('selected')
