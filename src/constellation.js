@@ -1,8 +1,11 @@
 import * as THREE from 'three'
+import { addStar } from './stars.js'
 
 const lines = []
 
 function drawLine (scene, obj) {
+  addStar(obj.gaia_data)
+
   if (lines.length === 0) {
     lines.push(obj)
     return

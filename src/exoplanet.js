@@ -53,6 +53,7 @@ const selectExoplanet = (exoplanet, el, scene) => {
     circle.position.x = star.coordenadas[0]
     circle.position.y = star.coordenadas[1]
     circle.position.z = star.coordenadas[2]
+    circle.gaia_data = star
 
     circle.lookAt(0, 0, 0)
     scene.add(circle)
