@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+    <link rel="stylesheet" href="src/index.css">
+	</head>
+	<body>
+    <button
+      class="test-button"
+    >
+      Test
+    </button>
+	</body>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script defer type="module" src="src/index.js"></script>
+</html>

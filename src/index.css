@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+}
+
+.test-button {
+  /* Fix button to be on front of canvas */
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
