@@ -17,10 +17,10 @@ function displayStarInfo(starData) {
 }
 
 // Fetch and process the JSON file
-// fetch('Exoplanets.json')
-//     .then(response => response.json())
-//     .then(data => {
-//         // Display information for the first star as an example
-//         displayStarInfo(data[0]);
-//     })
-//     .catch(error => console.error('Error fetching the JSON file:', error));
+fetch('Exoplanets.json')
+    .then(response => response.json())
+    .then(data => {
+        // Display information for the first star as an example
+        displayStarInfo(data[0]);
+    })
+    .catch(error => console.error('Error fetching the JSON file:', error));
