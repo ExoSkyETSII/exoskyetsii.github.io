@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { exoplanets } from './exoplanets.js'
 import Stats from 'three/addons/libs/stats.module.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-import { combStars } from './11 Com b.js'
+import { stars } from '../data/stars.js'
 
 const radius = 50
 
@@ -17,20 +17,6 @@ document.body.appendChild(stats.dom)
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.enableDamping = true
 camera.position.z = 0.001
-
-// Add test spheres
-for (const star of combStars) {
-  const geometry = new THREE.SphereGeometry()
-  const material = new THREE.MeshBasicMaterial({ color: 0xeeeeee })
-  const circle = new THREE.Mesh(geometry, material)
-
-  circle.position.x = star[0]
-  circle.position.y = star[1]
-  circle.position.z = star[2]
-
-  circle.lookAt(0, 0, 0);
-  scene.add(circle)
-}
 
 // Create a circle geometry for the equator
 const segments = 64
@@ -52,34 +38,6 @@ equatorGeometry.setAttribute(
 const equatorMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 }); // Red color
 const equatorLine = new THREE.Line(equatorGeometry, equatorMaterial);
 scene.add(equatorLine);
-
-// let isDragging = false
-// let previousMousePosition = { x: 0, y: 0 }
-
-// window.addEventListener('mousedown', (event) => {
-//   isDragging = true
-//   previousMousePosition = { x: event.clientX, y: event.clientY }
-// })
-
-// window.addEventListener('mousemove', (event) => {
-//   if (isDragging) {
-//     const deltaMove = {
-//       x: event.clientX - previousMousePosition.x,
-//       y: event.clientY - previousMousePosition.y
-//     }
-
-//     camera.rotation.y += deltaMove.x * 0.001
-//     camera.rotation.x += deltaMove.y * 0.001
-
-//     camera.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, camera.rotation.x))
-
-//     previousMousePosition = { x: event.clientX, y: event.clientY }
-//   }
-// })
-
-// window.addEventListener('mouseup', () => {
-//   isDragging = false
-// })
 
 window.addEventListener('resize', () => {
   const width = window.innerWidth
@@ -108,12 +66,40 @@ for (const exoplanet of exoplanets) {
 }
 
 const selectExoplanet = (exoplanet, el) => {
+  if (stars[exoplanet['pl_name']] == null) {
+    return
+  }
+
   const selectedExoplanets = document.querySelectorAll('.selected')
   for (const selectedExoplanet of selectedExoplanets) {
     selectedExoplanet.classList.remove('selected')
   }
 
   el.classList.add('selected')
+
+  for (const star of stars[exoplanet['pl_name']]) {
+    const geometry = new THREE.SphereGeometry()
+    const material = new THREE.MeshBasicMaterial({ color: 0xeeeeee, wireframe: true })
+    const circle = new THREE.Mesh(geometry, material)
+
+    // Distance to star
+    const distance = Math.sqrt(star[0] ** 2 + star[1] ** 2 + star[2] ** 2)
+
+    // If distance is more than 500, bring it closer
+    const maxDistance = 50
+
+    // Scale factor
+    const scaleFactor = maxDistance / distance
+
+    // console.log(star[0] * 0.1, star[1] * 0.1, star[2] * 0.1)
+    circle.position.x = star[0]
+    circle.position.y = star[1]
+    circle.position.z = star[2]
+
+    scene.add(circle)
+  }
+
+  console.log(stars['11 Com b'].length)
 }
 
 const animate = () => {
@@ -123,3 +109,8 @@ const animate = () => {
 }
 
 animate()
+
+export {
+  scene,
+  camera
+}
