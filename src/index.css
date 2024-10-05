@@ -10,13 +10,18 @@ body {
   right: 0;
   background-color: #333;
   width: 300px;
+  border-bottom-left-radius: 5px;
 }
 
 .exoplanets-input {
   font-family: monospace;
-  color: black;
+  color: white;
   margin: 15px;
   width: 250px;
+  background-color: #333;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 7.5px;
 }
 
 .exoplanets-input:focus {
