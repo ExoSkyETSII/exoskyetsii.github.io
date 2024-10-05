@@ -1,27 +1,26 @@
 import * as THREE from 'three'
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
+import { scene } from './index.js'
+import { font } from './fonts.js'
 
-let title = ''
-let textGeometry = null
-let textMaterial = null
 let textMesh = null
 
-function create3DText (message, position, scene, loadedFont) {
+function createText (message, position) {
   if (textMesh != null) {
     scene.remove(textMesh)
   }
 
-  title = message
   const distance = position.distanceTo(new THREE.Vector3(0, 0, 0))
-  textGeometry = new TextGeometry(title, {
-    font: loadedFont,
+  const textGeometry = new TextGeometry(message, {
+    font,
     size: 3 - 20 / distance,
     depth: 0.1,
     curveSegments: 12,
     bevelEnabled: false
   })
 
-  textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
+  const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
+
   textMesh = new THREE.Mesh(textGeometry, textMaterial)
 
   textMesh.position.copy(position)
@@ -31,5 +30,5 @@ function create3DText (message, position, scene, loadedFont) {
 }
 
 export {
-  create3DText
+  createText
 }

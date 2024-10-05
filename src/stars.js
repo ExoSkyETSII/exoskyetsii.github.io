@@ -1,6 +1,3 @@
-// Añadimos las estrellas 
-import { merged } from '../data/merged.js' 
-
 // seleccionamos la estrella a la lista de estrellas del index html 
 const starList = document.querySelector('.visible-stars')
 // funcion que dado un nombre de estrella y exoplaneta  te lo muestra en una lista 
@@ -16,18 +13,18 @@ function addStar(star){
     // Create tooltip element
     const tooltip = document.createElement('div');
     tooltip.classList.add('tooltip');
-    tooltip.innerHTML = `Coordinates & magnitudes: ${star['coordenadas']},<br/>Click for more info`;
+  tooltip.innerHTML = `<h4>Coordinates:</h4>X: ${star['coordenadas'][0]}<br/>Y: ${star['coordenadas'][1]}<br/>Z: ${star['coordenadas'][2]}<h4>Magnitude:</h4>${star['coordenadas'][3]}<br/>Click for more info`;
     document.body.appendChild(tooltip);
     
     // Show tooltip on hover
-    enlace.addEventListener('mouseover', function(event) {
+    starElement.addEventListener('mouseover', function(event) {
       tooltip.style.display = 'block';
-      tooltip.style.left = event.pageX + 'px';
-      tooltip.style.top = event.pageY + 'px';
+      tooltip.style.left = event.pageX + 5 + 'px';
+      tooltip.style.top = event.pageY - tooltip.offsetHeight - 5 + 'px';
     });
   
     // Hide tooltip when not hovering
-    enlace.addEventListener('mouseout', function() {
+    starElement.addEventListener('mouseout', function() {
       tooltip.style.display = 'none';
     });
 
