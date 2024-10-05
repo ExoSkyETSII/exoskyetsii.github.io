@@ -109,3 +109,8 @@ const animate = () => {
 }
 
 animate()
+
+export {
+  scene,
+  camera
+}
