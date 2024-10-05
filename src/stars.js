@@ -7,9 +7,23 @@ const starList = document.querySelector('.visible-stars')
 function addStar(star){
   const starElement = document.createElement('div')
   starElement.classList.add('listed-star')
-  const starName = document.createElement('span')
+  /*const starName = document.createElement('span')
   starName.textContent= star['nombre']
-  starElement.appendChild(starName);
+  */
+   /* starElement.addEventListener('click', function() {
+    console,console.log("Click detectado");
+    
+   
+  let  nombreMod = nombre.replace(/ /g, '+');
+    window.location.href = `${nombreMod}`;
+  });  */
+
+   const enlace = document.createElement('a');
+   let  nombre ='https://simbad.cds.unistra.fr/simbad/sim-basic?Ident='+ star['nombre'] +'&submit=SIMBAD+search'; 
+  enlace.href = nombre;
+  enlace.text= star['nombre'];
+  enlace.target = '_blank';
+  starElement.appendChild(enlace);
   starList.appendChild(starElement); 
 }
 function removeStar(star) {
