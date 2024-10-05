@@ -2,11 +2,18 @@ import * as THREE from 'three'
 import { exoplanets } from '../data/exoplanets.js'
 import Stats from 'three/addons/libs/stats.module.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 import { miniCube, miniAxes, miniRenderer, miniScene, miniCamera } from './rotation.js'
 import { selectExoplanet } from './exoplanet.js'
 import { clickHandler } from './raycast.js'
 
 const radius = 50
+
+let fontLoader = new FontLoader();
+let loadedFont;
+fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+  loadedFont = font;
+})
 
 const stats = new Stats()
 const scene = new THREE.Scene()
@@ -50,7 +57,7 @@ window.addEventListener('resize', () => {
 })
 
 window.addEventListener('click', (ev) => {
-  clickHandler(ev, camera, scene)
+  clickHandler(ev, camera, scene, loadedFont)
 })
 
 // Add exoplanets

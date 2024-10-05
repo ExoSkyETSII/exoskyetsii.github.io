@@ -9,13 +9,18 @@ body {
   top: 0;
   right: 0;
   background-color: #333;
+  width: 300px;
 }
 
-.exoplanets-title {
+.exoplanets-input {
   font-family: monospace;
-  font-size: 1.5em;
-  color: white;
+  color: black;
   margin: 15px;
+  width: 250px;
+}
+
+.exoplanets-input:focus {
+  outline: none;
 }
 
 ul {

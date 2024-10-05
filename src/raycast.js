@@ -1,10 +1,11 @@
 import * as THREE from 'three'
 import { drawLine } from './constellation.js'
+import { create3DText } from './text.js';
 
 const raycaster = new THREE.Raycaster()
 const mouse = new THREE.Vector2()
 
-function clickHandler (event, camera, scene, right) {
+function clickHandler (event, camera, scene, loadedFont) {
   // Calculate mouse position in normalized device coordinates (-1 to +1)
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -26,7 +27,8 @@ function clickHandler (event, camera, scene, right) {
       return
     }
 
-    clickedObject.material.uniforms.uColor.value.set(0xff0000);  // Red color
+    clickedObject.material.uniforms.uColor.value.set(0x0fffff);  // Red color
+    create3DText(clickedObject.gaia_data.nombre, clickedObject.position, scene, loadedFont)
     drawLine(scene, clickedObject)
   }
 }
