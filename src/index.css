@@ -1,12 +1,30 @@
 body {
   margin: 0;
+  overflow: hidden;
 }
 
-.test-button {
+.exoplanets-list {
   /* Fix button to be on front of canvas */
   z-index: 1;
   position: absolute;
   top: 0;
   right: 0;
   margin: 10px;
+  background-color: #333;
+}
+
+.exoplanets-title {
+  font-size: 1.5em;
+  color: white;
+  font-family: monospace;
+  margin: 10px;
+}
+
+/* .exoplanets {
+  overflow: scroll;
+} */
+
+.exoplanet > span {
+  color: white;
+  font-family: monospace;
 }
