@@ -18,6 +18,9 @@ const selectExoplanet = (exoplanet, el, scene) => {
     const geometry = new THREE.CircleGeometry()
     // const material = new THREE.MeshBasicMaterial({ color: 0xeeeeee, wireframe: false })
     const material = new THREE.ShaderMaterial({
+      uniforms: {
+        uColor: { value: new THREE.Color(0xffffff) }
+      },
       vertexShader: `
         varying vec3 vNormal;
         varying vec3 vPosition;
@@ -31,6 +34,7 @@ const selectExoplanet = (exoplanet, el, scene) => {
       fragmentShader: `
         varying vec3 vNormal;
         varying vec3 vPosition;
+        uniform vec3 uColor;
 
         void main() {
           // Calculate distance from the center (normalized position)
@@ -38,7 +42,7 @@ const selectExoplanet = (exoplanet, el, scene) => {
           // intensity = 1.0 - intensity;  // Invert it to start bright in the center
 
           // Apply gradient based on intensity
-          vec3 color = mix(vec3(1.0, 1.0, 1.0), vec3(0.0, 0.0, 0.0), intensity); // Bright white to dark fade
+          vec3 color = mix(uColor, vec3(0.0, 0.0, 0.0), intensity); // Bright white to dark fade
 
           gl_FragColor = vec4(color, 1.0);
         }
