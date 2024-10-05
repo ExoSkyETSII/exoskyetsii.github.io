@@ -46,16 +46,6 @@ const selectExoplanet = (exoplanet, el, scene) => {
     })
     const circle = new THREE.Mesh(geometry, material)
 
-    // Distance to star
-    const distance = Math.sqrt(star[0] ** 2 + star[1] ** 2 + star[2] ** 2)
-
-    // If distance is more than 500, bring it closer
-    const maxDistance = 50
-
-    // Scale factor
-    const scaleFactor = maxDistance / distance
-
-    // console.log(star[0] * 0.1, star[1] * 0.1, star[2] * 0.1)
     circle.position.x = star.coordenadas[0]
     circle.position.y = star.coordenadas[1]
     circle.position.z = star.coordenadas[2]
