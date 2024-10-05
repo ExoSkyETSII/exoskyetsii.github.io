@@ -28,3 +28,22 @@ body {
   color: white;
   font-family: monospace;
 }
+.star-list {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.star-title {
+  font-family: monospace;
+  color: yellow;
+  font-size: 1.5em;
+  margin: 10px;
+}
+.visible-stars{
+  font-family: sans-serif;
+}
