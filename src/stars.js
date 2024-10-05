@@ -16,7 +16,7 @@ function addStar(star){
     // Create tooltip element
     const tooltip = document.createElement('div');
     tooltip.classList.add('tooltip');
-    tooltip.textContent = `Coordenadas: ${star['coordenadas']},\n Click for more info`;
+    tooltip.textContent = `Coordinates & magnitudes: ${star['coordenadas']},\ln Click for more info`;
     document.body.appendChild(tooltip);
     
     // Show tooltip on hover
@@ -52,7 +52,7 @@ function clearStarlist(){
     // borra todos los elementos de la lista de estrellas
     starList.innerHTML= ''; 
 }
-const style = document.createElement('style');
+/* const style = document.createElement('style');
 style.textContent = `
   .tooltip {
     position: absolute;
@@ -64,7 +64,7 @@ style.textContent = `
     z-index: 1000;
   }
 `;
-document.head.appendChild(style);
+document.head.appendChild(style); */
 export{
     clearStarlist,
     addStar,

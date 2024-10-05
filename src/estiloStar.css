@@ -18,3 +18,12 @@
     font-family: sans-serif;
     
   }
+  .tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+  }
