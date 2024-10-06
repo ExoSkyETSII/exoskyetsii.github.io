@@ -7,7 +7,7 @@ function addStar(star){
   //  const enlace = document.createElement('a');
    let  nombre ='https://simbad.cds.unistra.fr/simbad/sim-basic?Ident='+ star['nombre'] +'&submit=SIMBAD+search'; 
   starElement.href = nombre;
-  starElement.text= star['nombre'];
+  starElement.text = `${starList.children.length + 1}. ${star['nombre']}`;
   starElement.target = '_blank';
   // Tootltip things 
     // Create tooltip element
