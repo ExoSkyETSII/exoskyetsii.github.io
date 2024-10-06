@@ -13,42 +13,49 @@ const miniScene = new THREE.Scene()
 const miniCamera = new THREE.PerspectiveCamera(50, 1, 0.1, 100)
 miniCamera.position.z = 3
 
-const miniCubeGeometry = new THREE.BoxGeometry(1, 1, 1)
+const miniAxes = new THREE.AxesHelper(1)
+miniScene.add(miniAxes)
 
-const createTextTexture = (text) => {
-  const canvas = document.createElement('canvas')
-  const context = canvas.getContext('2d')
-  canvas.width = 256
-  canvas.height = 256
-  context.fillStyle = '#fff'
-  context.fillRect(0, 0, canvas.width, canvas.height)
-  context.font = '48px Arial'
-  context.fillStyle = '#000'
-  context.textAlign = 'center'
-  context.textBaseline = 'middle'
-  context.fillText(text, canvas.width / 2, canvas.height / 2)
-  return new THREE.CanvasTexture(canvas)
+function createLabel (text) {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  const size = 256;
+  canvas.width = size;
+  canvas.height = size;
+  context.font = 'bold 100px Arial';
+  context.fillStyle = 'white';
+  context.textAlign = 'center';
+  context.textBaseline = 'middle';
+  context.fillText(text, size / 2, size / 2);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  const material = new THREE.SpriteMaterial({ map: texture });
+  const sprite = new THREE.Sprite(material);
+  sprite.scale.set(0.5, 0.5, 1); // Adjust the size of the labels
+  return sprite;
 }
 
-const miniMaterials = [
-  new THREE.MeshBasicMaterial({ map: createTextTexture('North') }),
-  new THREE.MeshBasicMaterial({ map: createTextTexture('South') }),
-  new THREE.MeshBasicMaterial({ map: createTextTexture('Up') }),
-  new THREE.MeshBasicMaterial({ map: createTextTexture('Down') }),
-  new THREE.MeshBasicMaterial({ map: createTextTexture('West') }),
-  new THREE.MeshBasicMaterial({ map: createTextTexture('East') })
-]
+// Create and position labels for X, Y, Z axes
+const xLabel = createLabel('X');
+const yLabel = createLabel('Y');
+const zLabel = createLabel('Z');
 
-const miniCube = new THREE.Mesh(miniCubeGeometry, miniMaterials)
-miniScene.add(miniCube)
+// Position the labels at the ends of the axes
+xLabel.position.set(1.1, 0, 0); // Slightly beyond the X axis
+yLabel.position.set(0, 1.1, 0); // Slightly beyond the Y axis
+zLabel.position.set(0, 0, 1.1); // Slightly beyond the Z axis
 
-const miniAxes = new THREE.AxesHelper(5)
-miniScene.add(miniAxes)
+// Add the labels to the mini scene
+miniAxes.add(xLabel);
+miniAxes.add(yLabel);
+miniAxes.add(zLabel)
 
 function animateCube () {
   requestAnimationFrame(animateCube)
-  miniCube.quaternion.copy(camera.quaternion)
   miniAxes.quaternion.copy(camera.quaternion)
+  xLabel.quaternion.copy(camera.quaternion); // Make labels always face the camera
+  yLabel.quaternion.copy(camera.quaternion);
+  zLabel.quaternion.copy(camera.quaternion);
   miniRenderer.render(miniScene, miniCamera)
 }
 
