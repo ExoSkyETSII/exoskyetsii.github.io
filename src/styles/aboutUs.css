@@ -1,5 +1,24 @@
 .about-us{
  background-image: url('/src/images/fotofondo2.jpg');
  color:aliceblue; /* Use a dark color for better contrast */
+ /* Cover */
+  background-size: cover;
+  height: 75vh;
 }
 
+.text-container {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.custom-text-primary {
+  margin: 20px;
+}
+
+.custom-text-secondary {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: justify;
+  margin: 20px;
+}
