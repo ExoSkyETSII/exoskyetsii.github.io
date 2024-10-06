@@ -20,7 +20,7 @@ function detectMobileDevice() {
   // Check for mobile device indicators
   if (/android/i.test(userAgent) || 
       /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      alert("You are viewing this webpage on a mobile device.");
+      alert("You are viewing this webpage on a mobile device. We recommend viewing this on a desktop/laptop for the best experience.");
   }
 }
 
