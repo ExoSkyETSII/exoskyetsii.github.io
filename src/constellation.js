@@ -14,7 +14,6 @@ function drawLine (obj) {
     return
   }
 
-  console.log(lines[lines.length - 1].position, obj.position)
   const geometry = new THREE.BufferGeometry().setFromPoints([
     lines[lines.length - 1].position,
     obj.position

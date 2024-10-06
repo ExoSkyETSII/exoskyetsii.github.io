@@ -1,3 +1,5 @@
+import { drawImported } from './raycast.js';
+
 const template = {
   name: 'Test',
   exoplanet: '11 UMi b',
@@ -5,21 +7,18 @@ const template = {
 }
 
 function downloadConstellation (stars, title) {
-  // const data = JSON.stringify({
-  //   name: title ?? 'Constellation',
-  //   exoplanet: template.exoplanet,
-  //   stars
-  // });
-  // const blob = new Blob([data], { type: 'application/json' });
-  // const url = URL.createObjectURL(blob);
-  // const a = document.createElement('a');
-  // a.href = url;
-  // a.download = `${title ?? 'Constellation'}.json`;
-  // a.click();
-  // URL.revokeObjectURL(url);
-  const a = document.createElement('a')
-  a.href = '/docs.html'
-  a.click()
+  const data = JSON.stringify({
+    name: title ?? 'Constellation',
+    exoplanet: template.exoplanet,
+    stars
+  });
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${title ?? 'Constellation'}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 function uploadConstellation () {
@@ -31,7 +30,7 @@ function uploadConstellation () {
     const reader = new FileReader();
     reader.onload = (event) => {
       const data = JSON.parse(event.target.result);
-      console.log(data);
+      drawImported(data.name, data.stars);
     };
     reader.readAsText(file);
   };
