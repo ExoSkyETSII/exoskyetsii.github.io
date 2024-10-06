@@ -5,6 +5,7 @@ import { createText } from './text.js'
 
 const raycaster = new THREE.Raycaster()
 const mouse = new THREE.Vector2()
+const stars = []
 
 function onClick (event) {
   mouse.set(
@@ -26,13 +27,19 @@ function onClick (event) {
     }
 
     clickedObject.material.uniforms.uColor.value.set(0x0fffff)
-    camera.lookAt(clickedObject.position)
+    // camera.lookAt(clickedObject.position)
 
+    stars.push(clickedObject.gaia_data)
     createText(clickedObject.gaia_data.nombre, clickedObject.position)
     drawLine(clickedObject)
   }
 }
 
+function getStars () {
+  return stars
+}
+
 export {
-  onClick
+  onClick,
+  getStars
 }
