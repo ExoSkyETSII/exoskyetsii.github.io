@@ -1,18 +1,18 @@
 import * as THREE from 'three'
-import Stats from 'three/addons/libs/stats.module.js'
+// import Stats from 'three/addons/libs/stats.module.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { animateCube } from './rotation.js'
 
 const radius = 50
 
-const stats = new Stats()
+// const stats = new Stats()
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 const renderer = new THREE.WebGLRenderer()
 
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
-document.body.appendChild(stats.dom)
+// document.body.appendChild(stats.dom)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.enableDamping = true
@@ -49,7 +49,7 @@ function createEquator () {
 
 function animateScene () {
   requestAnimationFrame(animateScene)
-  stats.update()
+  // stats.update()
   renderer.render(scene, camera)
 }
 
