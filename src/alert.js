@@ -13,3 +13,16 @@ document.getElementById('faq').onclick = function() {
 document.getElementById('contact').onclick = function() {
   alert("Cooming Soon! Reach us on our email for any queries: forgeconstellation@gmail.com ");
 };
+// JavaScript
+function detectMobileDevice() {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // Check for mobile device indicators
+  if (/android/i.test(userAgent) || 
+      /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      alert("You are viewing this webpage on a mobile device.");
+  }
+}
+
+// Call the function on page load
+window.onload = detectMobileDevice;
