@@ -13,7 +13,7 @@ body {
   border-bottom-left-radius: 5px;
 }
 
-.exoplanets-input {
+.input {
   font-family: monospace;
   color: white;
   margin: 15px;
@@ -22,10 +22,12 @@ body {
   border: 2px solid white;
   border-radius: 5px;
   padding: 7.5px;
+  transition: all ease-in-out 150ms;
 }
 
-.exoplanets-input:focus {
+.input:focus {
   outline: none;
+  border: 2px solid transparent;
 }
 
 ul {

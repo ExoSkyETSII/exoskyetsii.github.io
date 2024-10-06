@@ -4,13 +4,25 @@ import { scene } from './index.js'
 import { font } from './fonts.js'
 
 let textMesh = null
+let lastPosition = null
+let constellationName = null
 
-function createText (message, position) {
+function createText (message, position, useLastPosition, custom) {
+  if (useLastPosition && lastPosition == null) {
+    return
+  }
+
+  if (!custom && constellationName != null) {
+    message = constellationName
+  } else if (custom) {
+    constellationName = message
+  }
+
   if (textMesh != null) {
     scene.remove(textMesh)
   }
 
-  const distance = position.distanceTo(new THREE.Vector3(0, 0, 0))
+  const distance = (useLastPosition ? lastPosition : position).distanceTo(new THREE.Vector3(0, 0, 0))
   const textGeometry = new TextGeometry(message, {
     font,
     size: 3 - 20 / distance,
@@ -23,7 +35,14 @@ function createText (message, position) {
 
   textMesh = new THREE.Mesh(textGeometry, textMaterial)
 
-  textMesh.position.copy(position)
+  // textMesh.position.copy(position)
+  if (useLastPosition) {
+    textMesh.position.copy(lastPosition)
+  } else {
+    textMesh.position.copy(position)
+  }
+
+  lastPosition = textMesh.position
   textMesh.lookAt(0, 0, 0)
 
   scene.add(textMesh)

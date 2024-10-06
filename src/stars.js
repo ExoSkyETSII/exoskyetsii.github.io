@@ -2,13 +2,13 @@
 const starList = document.querySelector('.visible-stars')
 // funcion que dado un nombre de estrella y exoplaneta  te lo muestra en una lista 
 function addStar(star){
-  const starElement = document.createElement('div')
+  const starElement = document.createElement('a')
   starElement.classList.add('listed-star')
-   const enlace = document.createElement('a');
+  //  const enlace = document.createElement('a');
    let  nombre ='https://simbad.cds.unistra.fr/simbad/sim-basic?Ident='+ star['nombre'] +'&submit=SIMBAD+search'; 
-  enlace.href = nombre;
-  enlace.text= star['nombre'];
-  enlace.target = '_blank';
+  starElement.href = nombre;
+  starElement.text= star['nombre'];
+  starElement.target = '_blank';
   // Tootltip things 
     // Create tooltip element
     const tooltip = document.createElement('div');
@@ -28,7 +28,7 @@ function addStar(star){
       tooltip.style.display = 'none';
     });
 
-  starElement.appendChild(enlace);
+  // starElement.appendChild(enlace);
   starList.appendChild(starElement); 
 }
 function removeStar(star) {

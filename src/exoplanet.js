@@ -45,7 +45,7 @@ function loadExoplanets (exoplanet) {
 
         void main() {
           // Calculate distance center
-          float intensity = length(vPosition) / 1.5;
+          float intensity = length(vPosition) / 1.0;
           // intensity = 1.0 - intensity;  // Invert it to start bright in the center
 
           // Apply gradient based on intensity
