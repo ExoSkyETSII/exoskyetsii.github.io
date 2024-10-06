@@ -48,6 +48,11 @@ function createText (message, position, useLastPosition, custom) {
   scene.add(textMesh)
 }
 
+function getConstellationName () {
+  return constellationName
+}
+
 export {
-  createText
+  createText,
+  getConstellationName
 }
