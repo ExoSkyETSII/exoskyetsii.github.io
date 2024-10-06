@@ -5,24 +5,10 @@ import { font } from './fonts.js'
 
 let textMesh = null
 let lastPosition = null
-let constellationName = null
 
 function createText (message, position, useLastPosition, custom) {
-  if (useLastPosition && lastPosition == null) {
-    return
-  }
-
-  if (!custom && constellationName != null) {
-    message = constellationName
-  } else if (custom) {
-    constellationName = message
-  }
-
-  if (textMesh != null) {
-    scene.remove(textMesh)
-  }
-
-  const distance = (useLastPosition ? lastPosition : position).distanceTo(new THREE.Vector3(0, 0, 0))
+  const convertedPosition = new THREE.Vector3().fromArray(position)
+  const distance = (useLastPosition ? lastPosition : convertedPosition).distanceTo(new THREE.Vector3(0, 0, 0))
   const textGeometry = new TextGeometry(message, {
     font,
     size: 3 - 20 / distance,
@@ -35,24 +21,12 @@ function createText (message, position, useLastPosition, custom) {
 
   textMesh = new THREE.Mesh(textGeometry, textMaterial)
 
-  // textMesh.position.copy(position)
-  if (useLastPosition) {
-    textMesh.position.copy(lastPosition)
-  } else {
-    textMesh.position.copy(position)
-  }
-
-  lastPosition = textMesh.position
+  textMesh.position.copy(convertedPosition)
   textMesh.lookAt(0, 0, 0)
 
   scene.add(textMesh)
 }
 
-function getConstellationName () {
-  return constellationName
-}
-
 export {
-  createText,
-  getConstellationName
+  createText
 }

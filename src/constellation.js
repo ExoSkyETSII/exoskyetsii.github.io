@@ -2,30 +2,47 @@ import * as THREE from 'three'
 import { scene } from './index.js'
 import { addStar } from './stars.js'
 
-const lines = []
+// let constellations = {}
+let tempLines = []
+let lastName = null
 
-function drawLine (obj) {
-  if (!lines.some(line => line.gaia_data.nombre == obj.gaia_data.nombre)) {
-    addStar(obj.gaia_data)
+function drawLine (gaiaData, constellationName) {
+  if (lastName !== constellationName) {
+    tempLines = []
+    lastName = constellationName
   }
 
-  if (lines.length === 0) {
-    lines.push(obj)
+  if (tempLines.length === 0) {
+    tempLines.push(gaiaData)
     return
   }
 
+  // console.log(constellations[constellationName ?? 'Constellation'])
+  const lastVector = new THREE.Vector3().fromArray(tempLines[tempLines.length - 1].coordenadas)
+  const currentVector = new THREE.Vector3().fromArray(gaiaData.coordenadas)
+
   const geometry = new THREE.BufferGeometry().setFromPoints([
-    lines[lines.length - 1].position,
-    obj.position
+    lastVector,
+    currentVector
   ])
 
-  const material = new THREE.LineBasicMaterial({ color: 0x0fffff })
+  const material = new THREE.LineBasicMaterial({ color: 0xffffff })
   const line = new THREE.Line(geometry, material)
 
   scene.add(line)
-  lines.push(obj)
+  tempLines.push(gaiaData)
+}
+
+function clearLines () {
+  tempLines = []
+}
+
+function getLines () {
+  return tempLines
 }
 
 export {
-  drawLine
+  drawLine,
+  clearLines,
+  getLines
 }

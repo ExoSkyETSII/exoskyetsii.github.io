@@ -1,15 +1,16 @@
+import { clearLines } from './constellation.js';
 import { drawImported } from './raycast.js';
 
-const template = {
-  name: 'Test',
-  exoplanet: '11 UMi b',
-  stars: []
-}
+// const template = {
+//   name: 'Test',
+//   exoplanet: '11 UMi b',
+//   stars: []
+// }
 
 function downloadConstellation (stars, title) {
   const data = JSON.stringify({
     name: title ?? 'Constellation',
-    exoplanet: template.exoplanet,
+    exoplanet: '11 UMi b',
     stars
   });
   const blob = new Blob([data], { type: 'application/json' });
@@ -19,6 +20,7 @@ function downloadConstellation (stars, title) {
   a.download = `${title ?? 'Constellation'}.json`;
   a.click();
   URL.revokeObjectURL(url);
+  clearLines();
 }
 
 function uploadConstellation () {
@@ -30,7 +32,7 @@ function uploadConstellation () {
     const reader = new FileReader();
     reader.onload = (event) => {
       const data = JSON.parse(event.target.result);
-      drawImported(data.name, data.stars);
+      drawImported(data);
     };
     reader.readAsText(file);
   };

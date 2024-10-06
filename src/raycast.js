@@ -6,6 +6,7 @@ import { createText } from './text.js'
 const raycaster = new THREE.Raycaster()
 const mouse = new THREE.Vector2()
 const starsList = []
+const title = document.querySelector('.star-title')
 
 function onClick (event) {
   mouse.set(
@@ -22,43 +23,22 @@ function onClick (event) {
     const clickedObject = meshIntersects[0].object
     console.log('You clicked on:', clickedObject)
 
-    if (clickedObject.material?.uniforms?.uColor == null) {
-      return
-    }
-
-    clickedObject.material.uniforms.uColor.value.set(0x0fffff)
-    // camera.lookAt(clickedObject.position)
-
     starsList.push(clickedObject.gaia_data)
-    createText(clickedObject.gaia_data.nombre, clickedObject.position)
-    drawLine(clickedObject)
+    drawLine(clickedObject.gaia_data, title.value)
   }
 }
 
-function drawImported (title, stars) {
-  for (const star of stars) {
-    const children = scene.children.filter((child) => {
-      return child.type === 'Mesh' && child.gaia_data != null && child.gaia_data.nombre === star.nombre
-    })
-    for (const child of children) {
-      child.material.uniforms.uColor.value.set(0x0fffff)
+function drawImported (gaiaData) {
+  for (const star of gaiaData.stars) {
+    drawLine(star, gaiaData.name)
 
-      starsList.push(child.gaia_data)
-      drawLine(child)
-
-      if (children.indexOf(child) === children.length - 1) {
-        createText(title, child.position)
-      }
+    if (gaiaData.stars.indexOf(star) === gaiaData.stars.length - 1) {
+      createText(gaiaData.name, star.coordenadas)
     }
   }
-}
-
-function getStars () {
-  return starsList
 }
 
 export {
   onClick,
-  getStars,
   drawImported
 }

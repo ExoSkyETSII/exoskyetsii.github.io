@@ -1,9 +1,10 @@
+import { getLines } from './constellation.js'
 import { exoplanets } from './data/exoplanets.js'
 import { downloadConstellation, uploadConstellation } from './downup.js'
 import { selectExoplanet } from './exoplanet.js'
 import { camera, renderer } from './index.js'
-import { getStars, onClick } from './raycast.js'
-import { createText, getConstellationName } from './text.js'
+import { onClick } from './raycast.js'
+import { createText } from './text.js'
 
 const exoplanetsList = document.querySelector('.exoplanets')
 const search = document.querySelector('.exoplanets-input')
@@ -39,25 +40,12 @@ search.oninput = (ev) => {
   }
 }
 
-constellationNameSet.onsubmit = (ev) => {
+exportConstellation.onclick = (ev) => {
   ev.preventDefault()
-  const constellationName = document.querySelector('.star-title')
-  console.log(constellationName)
-  const nameValue = constellationName.value
+  const title = document.querySelector('.star-title')
+  const stars = getLines()
 
-  console.log(nameValue)
-  if (nameValue == null || nameValue === '') {
-    return
-  }
-
-  createText(nameValue, null, true, true)
-}
-
-exportConstellation.onclick = () => {
-  const title = getConstellationName()
-  const stars = getStars()
-
-  downloadConstellation(stars, title)
+  downloadConstellation(stars, title.value)
 }
 
 importConstellation.onclick = () => {
