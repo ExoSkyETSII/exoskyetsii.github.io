@@ -1,0 +1,1 @@
+[distances,distances_noNaN,distances_local,distances_norm,norm,norm2,names]=distance("Umi_11_B_9.csv",229.2741,71.8240,7.953880)
