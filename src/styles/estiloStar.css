@@ -6,6 +6,8 @@
   padding: 15px;
   margin: 10px;
   border-radius: 10px;
+  max-height: 50vh;
+  overflow: auto;
 }
 
 .star-title {

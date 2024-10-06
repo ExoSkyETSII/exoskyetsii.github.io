@@ -7,6 +7,8 @@ import { drawImported } from './raycast.js';
 //   stars: []
 // }
 
+let uploaded = []
+
 function downloadConstellation (stars, title) {
   const data = JSON.stringify({
     name: title ?? 'Constellation',
@@ -32,6 +34,12 @@ function uploadConstellation () {
     const reader = new FileReader();
     reader.onload = (event) => {
       const data = JSON.parse(event.target.result);
+
+      if (uploaded.includes(data.name)) {
+        return;
+      }
+
+      uploaded.push(data.name);
       drawImported(data);
     };
     reader.readAsText(file);

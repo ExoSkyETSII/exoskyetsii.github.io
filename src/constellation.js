@@ -29,6 +29,8 @@ function drawLine (gaiaData, constellationName) {
   const material = new THREE.LineBasicMaterial({ color: 0xffffff })
   const line = new THREE.Line(geometry, material)
 
+  addStar(gaiaData, constellationName)
+
   scene.add(line)
   tempLines.push(gaiaData)
 }
