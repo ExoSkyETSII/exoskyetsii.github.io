@@ -80,7 +80,8 @@ body {
   /* font-weight: light; */
   font-size: 1.2em;
   background-color: rgba(0, 0, 0, 0.25);
-  padding: 5px 10px;
+  padding: 15px 20px;
+  border-radius: 10px;
   width: 50%;
   /* text-align: center; */
 }
