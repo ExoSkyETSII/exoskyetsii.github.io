@@ -30,19 +30,8 @@
 .footer a:hover {
     text-decoration: underline;
 }
-.image-box {
-    position: absolute;
-    top: 0;
-    flex-direction: column;
-    bottom: 60px; /* Adjust this value if needed to ensure it sits above the footer */
-    width: 50%;
-    left: 0;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-  
+
+
 
 .image-planet{
     position: absolute;
@@ -73,7 +62,7 @@
     margin: 0;
     text-align: center;
     font-family: Arial, sans-serif;
-}
+}   
   
 .black-box h2 {
     font-size: 24px;
