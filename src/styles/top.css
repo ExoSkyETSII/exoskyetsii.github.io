@@ -9,7 +9,7 @@ body {
 .header {
   display: flex;
   height: 15vh;
-  background-color: #444;
+  background-color: black;
   position: relative;
 }
 
@@ -80,11 +80,17 @@ body {
   font-size: 1.2em;
   background-color: rgba(0, 0, 0, 0.25);
   padding: 5px 10px;
+  width: 300px;
+  text-align: center;
 }
 
 .background-text > h1 {
   margin: 0;
   text-decoration: underline;
+}
+
+.background-text > h4 {
+  margin-bottom: 0;
 }
 
 #challenges {

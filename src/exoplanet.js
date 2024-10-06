@@ -3,9 +3,9 @@ import { scene } from './index.js'
 import { stars } from './data/stars.js'
 
 function selectExoplanet (exoplanet, el) {
-  if (stars[exoplanet['pl_name']] == null) {
-    return
-  }
+  // if (stars[exoplanet['pl_name']] == null) {
+  //   return
+  // }
 
   if (el.classList.contains('selected')) {
     return
@@ -21,7 +21,7 @@ function selectExoplanet (exoplanet, el) {
 }
 
 function loadExoplanets (exoplanet) {
-  for (const star of stars[exoplanet['pl_name']]) {
+  for (const star of stars['11 UMi b']) {
     const geometry = new THREE.CircleGeometry()
     // const material = new THREE.MeshBasicMaterial({ color: 0xeeeeee, wireframe: false })
     const material = new THREE.ShaderMaterial({
