@@ -1,80 +1,46 @@
-.footer {
-    background-color: #1b1919;
-    padding: 20px;
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    top: 100vh;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-.footer img {
-    height: 50px;
-    vertical-align: middle;
-    margin-right: 10px;
-    float: left;
-}
-.footer .name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-right: 20px;
-    color: #ffffff;
-}
-.footer a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #eee9e9;
-    font-size: 16px;
-}
-.footer a:hover {
-    text-decoration: underline;
+.bottom-part {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-
-
-.image-planet{
-    position: absolute;
-    top: 0;
-    flex-direction: column;
-    bottom: 60px; /* Adjust this value if needed to ensure it sits above the footer */
-    width: 50%;
-    left: 0;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    display: flex; 
+.image-planet {
+  width: 50%;
+  object-fit: cover;
 }
+
 .black-box {
-    position: absolute;
-    top: 0;
-    flex-direction: column;
-    bottom: 60px; /* Adjust this value if needed to ensure it sits above the footer */
-    width: 50%;
-    height: 100vh;
-    right: 0;
-    align-items: center;
-    justify-content: center;
-    
-    display: flex;
-    background-color: black;
-    color: white;
-    margin: 0;
-    text-align: center;
-    font-family: Arial, sans-serif;
-}   
-  
-.black-box h2 {
-    font-size: 24px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px;
 }
 
-.black-box p {
-    font-size: 16px;
-    margin-bottom: 15px;
+.black-box > h2 {
+  text-decoration: underline;
 }
 
-.black-box strong {
-    font-size: 18px;
+footer {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 10vh;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+footer > img {
+  height: 5vh;
+  margin: 0 20px;
+}
+
+.links > a {
+  color: white;
+}
+
+.links {
+  font-size: 1.2em;
 }
