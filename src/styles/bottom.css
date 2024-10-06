@@ -32,26 +32,42 @@
 }
 .image-box {
     position: absolute;
+    top: 0;
+    flex-direction: column;
     bottom: 60px; /* Adjust this value if needed to ensure it sits above the footer */
     width: 50%;
     left: 0;
     height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
   
 
 .image-planet{
-     position: absolute;
+    position: absolute;
+    top: 0;
+    flex-direction: column;
     bottom: 60px; /* Adjust this value if needed to ensure it sits above the footer */
     width: 50%;
-    height: 100vh;
     left: 0;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex; 
 }
 .black-box {
     position: absolute;
+    top: 0;
+    flex-direction: column;
     bottom: 60px; /* Adjust this value if needed to ensure it sits above the footer */
     width: 50%;
     height: 100vh;
     right: 0;
+    align-items: center;
+    justify-content: center;
+    
+    display: flex;
     background-color: black;
     color: white;
     margin: 0;
