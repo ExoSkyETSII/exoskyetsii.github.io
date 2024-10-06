@@ -21,6 +21,11 @@ function selectExoplanet (exoplanet, el) {
 }
 
 function loadExoplanets (exoplanet) {
+  const loadedMeshes = scene.children.filter((child) => child.type === 'Mesh' && child.gaia_data != null)
+  for (const loadedMesh of loadedMeshes) {
+    scene.remove(loadedMesh)
+  }
+
   for (const star of stars['11 UMi b']) {
     const geometry = new THREE.CircleGeometry()
     // const material = new THREE.MeshBasicMaterial({ color: 0xeeeeee, wireframe: false })
