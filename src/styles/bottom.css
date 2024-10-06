@@ -50,6 +50,6 @@ footer > img {
   gap: 50px;
 }
 
-.links > img {
+.links > a > img {
   width: 50px;
 }
