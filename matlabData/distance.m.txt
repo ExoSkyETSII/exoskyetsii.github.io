@@ -1,0 +1,98 @@
+function [Distances,Distances_noNaN,Distances_Local,Distances_Norm,norm,norm2,names]=distance(data,ra0,dec0,mparallax0)
+%% READING DATA
+format long g
+Data=readtable(data);
+
+name=Data{:,1}; %First column
+ra =Data{:, 3}; % Third column
+dec =Data{:, 4}; % Fourth column
+mparallax =Data{:, 5}; % Fifth column
+mag= Data{:,9}; %Ninth Column
+
+%ra = Right Ascension [deg]
+%dec = Declination [deg]
+%mparallax = Parallax [marcsec]
+%mag = Gaia Magnitude [-]
+
+%Converting parallax to distance [light-year]
+parallax=mparallax./1000; %[arcsecs]
+distance=1./parallax; %[parsecs]
+distance_lightyears=3.261636.*distance; %[lightyears]
+
+%Obtaining cartesian coordinates
+
+z=distance_lightyears.*sind(dec(1:end));
+x=distance_lightyears.*cosd(dec).*cosd(ra(1:end));
+y=distance_lightyears.*cosd(dec).*sind(ra(1:end));
+index=1:length(name);
+
+Distances=[index',x, y, z, mag];
+Distances_noNaN = Distances(~any(isnan(Distances), 2), :);
+
+%Obtaining Exoplanet coordinates
+parallax0=mparallax0/1000;
+distance0=1/parallax0;
+distance_lightyears0=3.261636*distance0;
+z0=distance_lightyears0*sind(dec0);
+x0=distance_lightyears0*cosd(dec0)*cosd(ra0);
+y0=distance_lightyears0*cosd(dec0)*sind(ra0);
+
+%Local Distance
+names=name(Distances_noNaN(:,1));
+Distances_Local=[x0-Distances_noNaN(:,2),y0-Distances_noNaN(:,3),z0-Distances_noNaN(:,4), Distances_noNaN(:,5)];
+norm=abs(sqrt(Distances_Local(:,1).^2.+Distances_Local(:,2).^2.+Distances_Local(:,3).^2));
+
+%Projecting on a Sphere of 500 light years so it would be visible in the
+%website
+Distances_Norm=Distances_Local;
+for i=1:length(norm)
+    if norm(i)>500
+        Distances_Norm(i,1:3)=Distances_Local(i,1:3).*randi([500,1000])./norm(i);
+    end
+end
+norm2=abs(sqrt(Distances_Norm(:,1).^2.+Distances_Norm(:,2).^2.+Distances_Norm(:,3).^2)); 
+%% SAVING DISTANCES
+%Convert the matrix to JSON format
+jsonData = jsonencode(Distances_Norm);
+
+%Specify the filename
+filename = 'distances_11_Umi_B_9.json';
+
+%Write the JSON string to a file
+fid = fopen(filename, 'w'); % Open file for writing
+if fid == -1
+    error('Cannot create JSON file: %s', filename);
+end
+fprintf(fid, '%s', jsonData); % Write JSON data
+fclose(fid); % Close the file
+
+% Display message
+disp(['Matrix exported to ', filename]);
+
+%% SAVING NAME VARIABLES
+
+%Convert the matrix to JSON format
+jsonData = jsonencode(names);
+
+%Specify the filename
+filename = 'name_11_Umi_B_9.json';
+
+%Write the JSON string to a file
+fid = fopen(filename, 'w'); % Open file for writing
+if fid == -1
+    error('Cannot create JSON file: %s', filename);
+end
+fprintf(fid, '%s', jsonData); % Write JSON data
+fclose(fid); % Close the file
+
+% Display message
+disp(['Matrix exported to ', filename]);
+
+end
+
+
+
+
+
+
+
