@@ -72,6 +72,7 @@ body {
 .background-text {
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
   left: 10px;
   color: white;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
