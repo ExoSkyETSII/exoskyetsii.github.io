@@ -28,6 +28,7 @@ footer {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   height: 10vh;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -42,5 +43,6 @@ footer > img {
 }
 
 .links {
+  margin-right: 20px;
   font-size: 1.2em;
 }
