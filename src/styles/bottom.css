@@ -1,0 +1,75 @@
+.footer {
+    background-color: #1b1919;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.footer img {
+    height: 50px;
+    vertical-align: middle;
+    margin-right: 10px;
+    float: left;
+}
+.footer .name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px;
+    color: #ffffff;
+}
+.footer a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #eee9e9;
+    font-size: 16px;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+.image-box {
+    position: absolute;
+    bottom: 60px; /* Adjust this value if needed to ensure it sits above the footer */
+    width: 50%;
+    left: 0;
+    height: 100vh;
+}
+  
+
+.image-planet{
+     position: absolute;
+    bottom: 60px; /* Adjust this value if needed to ensure it sits above the footer */
+    width: 50%;
+    height: 100vh;
+    left: 0;
+}
+.black-box {
+    position: absolute;
+    bottom: 60px; /* Adjust this value if needed to ensure it sits above the footer */
+    width: 50%;
+    height: 100vh;
+    right: 0;
+    background-color: black;
+    color: white;
+    margin: 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+  
+.black-box h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.black-box p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.black-box strong {
+    font-size: 18px;
+}
