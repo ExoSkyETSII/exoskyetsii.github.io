@@ -1,8 +1,9 @@
-# Hi !
-Welcome to the team ETSII Github Page's.
+# Hi!
+Welcome to the concept page of Exosky! We recommend visiting 11 UMi b, a binary system!
 - [About us](#about-us)
 - [Description](#description)
 - [Bibliography and technologies employed](#technologies-resources-and-bibliographyy-employed)
+
 ## About us:
 We're a multidisciplinary engineering and science team (but don't be fooled by our team name, we come from a wide array of disciplines, not just computer science and engineering) composed by: 
 - Angelo Sho Moraschi (Team leader).
